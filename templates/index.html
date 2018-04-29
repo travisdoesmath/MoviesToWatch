@@ -14,10 +14,10 @@
                 {% for movie in movies %}
                 <div class="col-4 d-flex">
                     <div class="card mb-4 box-shadow">
-                        <div class="card-header {% if movie.index is divisibleby(5) %}bg-primary text-white{% else %}bg-dark text-white{% endif %}">
+                        <div class="card-header {% if movie.seen %}bg-dark text-white{% else %}bg-primary text-white{% endif %}">
                             <h5>{{movie.title}} ({{movie.year}})</h5>
                         </div>
-                        <div class="card-body {% if movie.index is divisibleby(5) %}bg-primary text-white{% else %}bg-dark text-white{% endif %}">
+                        <div class="card-body {% if movie.seen %}bg-dark text-white{% else %}bg-primary text-white{% endif %}">
                             <div class="row">
                                 <div class="col-6">
                                     <!-- <img src="{{url_for('static', filename = 'images/tt0000417.jpg')}}"> -->
@@ -30,10 +30,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer {% if movie.index is divisibleby(5) %}bg-primary text-white{% else %}bg-dark text-white{% endif %}">
-                            <button type="button" class="btn btn-block {% if movie.index is divisibleby(5) %}bg-light text-black not-seen{% else %}bg-secondary text-white seen{% endif %}">
-                                {% if movie.index is divisibleby(5) %}Mark Seen{% else %}Mark Unseen{% endif %}
-                            </button>
+                        <div class="card-footer {% if movie.seen %}bg-dark text-white{% else %}bg-primary text-white{% endif %}">
+                            <a href="{% if movie.seen %}/markunseen/{{movie.title_id}}{% else %}/markseen/{{movie.title_id}}{% endif %}" type="button" class="btn btn-block {% if movie.seen%}bg-secondary text-white seen{% else %}bg-light text-black not-seen{% endif %}">
+                                {% if movie.seen %}Mark Unseen{% else %}Mark Seen{% endif %}
+                            </a>
                         </div>
                     </div>
                 </div>
