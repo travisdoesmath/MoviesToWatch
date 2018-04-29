@@ -18,7 +18,7 @@ def markseen(title_id):
         db.movies.update({"title_id":title_id}, {'$set':{"seen":True}})
     except:
         print(f'An error occured trying to update {title_id}')
-    return redirect("/", code=302)
+    return redirect(f"/#{title_id}", code=302)
 
 @app.route("/markunseen/<title_id>")
 def markunseen(title_id):
@@ -26,7 +26,7 @@ def markunseen(title_id):
         db.movies.update({"title_id":title_id}, {'$set':{"seen":False}})
     except:
         print(f'An error occured trying to update {title_id}')
-    return redirect("/", code=302)
+    return redirect(f"/#{title_id}", code=302)
 
 if __name__ == "__main__":
     app.run(debug=True)
