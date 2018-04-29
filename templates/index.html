@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     
 </head>
-<body>
+<body class="bg-light">
         <div class="jumbotron">
         </div>
         <div class="container">
@@ -14,23 +14,25 @@
                 {% for movie in movies %}
                 <div class="col-4 d-flex">
                     <div class="card mb-4 box-shadow">
-                        <div class="card-header">
+                        <div class="card-header {% if movie.index is divisibleby(5) %}bg-primary text-white{% else %}bg-dark text-white{% endif %}">
                             <h5>{{movie.title}} ({{movie.year}})</h5>
                         </div>
-                        <div class="card-body row">
-                            <div class="col-6">
-                                <!-- <img src="{{url_for('static', filename = 'images/tt0000417.jpg')}}"> -->
-                                <img src="/static/images/{{movie.title_id}}.jpg">
-                            </div>
-                            <div class="col-6">
-                                <h6 class="card-title">Director: {{movie.director}}</h6>
-                                <p>{{movie.summary}}</p>
-                                <span><small>Starring: {{ movie.stars|join(', ') }}</small></span>
+                        <div class="card-body {% if movie.index is divisibleby(5) %}bg-primary text-white{% else %}bg-dark text-white{% endif %}">
+                            <div class="row">
+                                <div class="col-6">
+                                    <!-- <img src="{{url_for('static', filename = 'images/tt0000417.jpg')}}"> -->
+                                    <img src="/static/images/{{movie.title_id}}.jpg">
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="card-title">Director: {{movie.director}}</h6>
+                                    <p>{{movie.summary}}</p>
+                                    <span><small>Starring: {{ movie.stars|join(', ') }}</small></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button type="button" class="btn btn-block">
-                                I'm a footer button!
+                        <div class="card-footer {% if movie.index is divisibleby(5) %}bg-primary text-white{% else %}bg-dark text-white{% endif %}">
+                            <button type="button" class="btn btn-block {% if movie.index is divisibleby(5) %}bg-light text-black not-seen{% else %}bg-secondary text-white seen{% endif %}">
+                                {% if movie.index is divisibleby(5) %}Mark Seen{% else %}Mark Unseen{% endif %}
                             </button>
                         </div>
                     </div>
