@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row">
                 {% for movie in movies %}
-                <div class="col-4 d-flex">
+                <div class="col-md-4 col-sm-12 d-flex">
                     <a name="{{ movie.title_id }}"></a>
                     <div class="card mb-4 box-shadow">
                         <div class="card-header {% if movie.seen %}bg-dark text-white{% else %}bg-primary text-white{% endif %}">
