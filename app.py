@@ -1,7 +1,10 @@
 from flask import Flask, render_template, redirect
+from flask_login import LoginManager
 import pymongo
 
 app = Flask(__name__, static_url_path='/static')
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 conn = "mongodb://localhost:27017"
 client = pymongo.MongoClient(conn)
